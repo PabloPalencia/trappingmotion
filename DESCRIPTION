@@ -1,13 +1,13 @@
 Package: trappingmotion
 Type: Package
-Title: Integrate camera-trapping in movement and behavioural studies
+Title: Integrate camera-trapping in movement and behavioural studies.
 Version: 0.1.0
 Author: Pablo Palencia
-Maintainer: The package maintainer <palencia_pablo@hotmail.com>
+Maintainer: Pablo Palencia <palencia_pablo@hotmail.com>
 Description: Provides fucntions to identify movement patterns in wildlife 
 from population sampled with camera-traps.Functions to estimate day range 
 (key parameter for estimating population density through REM).
 
-License: MIT License
+License: MIT 
 Encoding: UTF-8
 LazyData: true

@@ -39,7 +39,7 @@ head(RedDeerdata)
 ```
 
 
-## 2.1 Identify movement behaviours (states)
+## 2.1 Identifying movement behaviours (states)
 
 Using the `identbhvs` function it is possible to identify different movement behaviours (e.g. animals that were foraging VS animals that were moving between habitat patches).
 
@@ -49,19 +49,39 @@ Using the `identbhvs` function it is possible to identify different movement beh
 
 3 different movement behaviours have been identified in this population.
 
-## 2.2 Estimate mean movement speed
+## 2.2 Estimating mean movement speed
 A sampling bias to fast movements have been described in camera-trapping studies. Considering that, mean speed of each behaviour cannot be estimated by aritmethic mean. To solve this bias we use the function `meanspeed`.
 
 ```{r}
 #meanspeed(behav_class)
 ```
 
-## 2.3 Estimate day range
+## 2.3 Estimating day range
 To estimate day range (i.e. average daily distance travelled by the animals) it is need to get values about activity and speed of the animals. In the first part of this vignette, we have described the procedure to estimate speed. Now, we will describe how to estimate activity rate. For that, we will use the `activity` R package.
 
 ```{r}
-#library(activity)
+library(activity)
+
+# Estimating radian time of day
+RedDeerdata$T_0_1 <- (as.numeric(strptime(RedDeerdata$Time, format="%H:%M:%S") - as.POSIXct(format(Sys.Date())), units="secs")/86400)
+
+# Estimating activity value
+activityRES <- 2*pi*RedDeerdata$T_0_1
+mod1 <- fitact(activityRES, sample="data") 
+
+# Ploting activity patterns
+par(mfrow=c(1,1))
+plot(mod1)
+
+# Fitting activity results
+act <- mod1@act[1]
+act_se <- mod1@act[2]
+
 ```
+
+
+
+
 
 
 Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:

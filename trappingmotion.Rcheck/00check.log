@@ -1,0 +1,79 @@
+* using log directory 'D:/rprojects/trappingmotion_Rpackage/trappingmotion/trappingmotion.Rcheck'
+* using R version 3.6.1 (2019-07-05)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: ISO8859-1
+* checking for file 'trappingmotion/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'trappingmotion' version '1.0'
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking whether package 'trappingmotion' can be installed ... WARNING
+Found the following significant warnings:
+  Warning: D:/rprojects/trappingmotion_Rpackage/trappingmotion/trappingmotion/man/trappingmotion-package.Rd:26: All text must be in a section
+See 'D:/rprojects/trappingmotion_Rpackage/trappingmotion/trappingmotion.Rcheck/00install.out' for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+Non-standard license specification:
+  What license is it under?
+Standardizable: FALSE
+Checking should be performed on sources prepared by 'R CMD build'.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+prepare_Rd: trappingmotion-package.Rd:26: All text must be in a section
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Unknown package '<pkg>' in Rd xrefs
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... WARNING
+Warning: parse error in file 'trappingmotion-Ex.R':
+22:11: unexpected symbol
+21: 
+22: ~~ simple examples
+              ^
+* checking examples ... ERROR
+Running examples in 'trappingmotion-Ex.R' failed
+The error most likely occurred in:
+
+> ### Name: trappingmotion-package
+> ### Title: prueba a las 11:45
+> ### Aliases: trappingmotion-package trappingmotion
+> ### Keywords: package
+> 
+> ### ** Examples
+> 
+> ~~ simple examples of the most important functions ~~
+Error: unexpected symbol in "~~ simple examples"
+Execution halted
+* checking PDF version of manual ... WARNING
+LaTeX errors when creating PDF version.
+This typically indicates Rd problems.
+* checking PDF version of manual without hyperrefs or index ... ERROR
+Re-running with no redirection of stdout/stderr.
+* DONE
+Status: 2 ERRORs, 5 WARNINGs, 1 NOTE

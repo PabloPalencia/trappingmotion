@@ -1,0 +1,11 @@
+Package: trappingmotion
+Type: Package
+Title: prueba a las 11:45
+Version: 1.0
+Date: 2020-07-30
+Author: Who wrote it
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: More about what it does (maybe more than one line)
+License: What license is it under?
+RoxygenNote: 7.1.1
+Built: R 3.6.1; ; 2020-07-30 09:52:58 UTC; windows

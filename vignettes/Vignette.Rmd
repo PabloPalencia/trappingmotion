@@ -20,17 +20,32 @@ knitr::opts_chunk$set(
 Animal movement plays a crucial role in ecology as a key parameter in spatial distribution, population abundance, and other related processes such as habitat use and disease transmission, among others. Nowadays, movement ecology studies are based on a wide range of sensors, mainly biologging devices, but also satellites and drones. However, camera-traps (remotely activated cameras, CT) have been scarcelly used for this purpose. Camera-trapping has experienced exponential growth during the last two decades. CT are used for a wide range of applications: species inventory, habitat use, abundance estimation, occupancy or species interaction, among others. In *trappingmotion* R package we devoleped a set of new functions to integrate movement & behavioural ecology in camera-trapping studies.
 
 # 2. Getting started with *trappingmotion* package.
-This vignette will guide you throught the main functions included in the package. Briefly, we will identify movement behaviours (states) in a red deer population sampled with camera-traps, we will estimate the average mean speed of each behaviour, and finally, we will estimate day range. For that, we will analyse the dataset 'RedDeerdata' provided in the package.
-
-```{r include=TRUE}
+This vignette will guide you throught the main functions included in the package. Briefly, we will identify movement behaviours (states) in a red deer population sampled with camera-traps, we will estimate the average movement speed of each behaviour, and finally, we will estimate day range. For that, we will analyse the dataset 'RedDeerdata' provided in the package.
 
 library(devtools)
 devtools::install_github("PabloPalencia/trappingmotion")
 library(trappingmotion)
 
+First we load the *trappingmotion* library:
+```{r}
+library(trappingmotion)
+```
+
+The data frame "ReedDeerdata" includes 183 records of a red deer population. Time (first column) and movement speed in m/s (second column) of each animal recorded by the camera-traps are included.
+
+```{r}
+data("RedDeerdata")
+head(RedDeerdata)
 ```
 
 
+## 2.1 Identify movement behaviours (states)
+
+Using the `identbhvs` function it is possible to identify different movement behaviours (e.g. animals that were foraging VS animals that were moving between habitat patches).
+
+```{r}
+identbhvs(RedDeerdata$Speed)
+```
 
 Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
 

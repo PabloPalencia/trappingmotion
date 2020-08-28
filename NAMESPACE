@@ -1,7 +1,7 @@
 #exportPattern("^[[:alpha:]]+")
 
 #export(hello)
-importFrom(NbClust)
+import(NbClust)
 importFrom(mixdist)
 importFrom(ggplot2)
 importFrom(tidyverse)

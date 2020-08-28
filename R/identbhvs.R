@@ -1,4 +1,3 @@
-#' @export
 identbhvs <- function(dat){
   muestra <-data.frame(dat*100); muestra <- subset(muestra, muestra >0); names(muestra) <- ("speed")
 

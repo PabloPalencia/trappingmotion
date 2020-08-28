@@ -1,7 +1,7 @@
 ---
 title: "trappingmotion Vignette"
 author: "Pablo Palencia"
-date: "30 July 2020"
+date: "28 August 2020"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{trappingmotion Vignette}
@@ -22,12 +22,11 @@ Animal movement plays a crucial role in ecology as a key parameter in spatial di
 # 2. Getting started with *trappingmotion* package.
 This vignette will guide you throught the main functions included in the package. Briefly, we will identify movement behaviours (states) in a red deer population sampled with camera-traps, we will estimate the average movement speed of each behaviour, and finally, we will estimate day range. For that, we will analyse the dataset 'RedDeerdata' provided in the package.
 
-library(devtools)
-devtools::install_github("PabloPalencia/trappingmotion")
-library(trappingmotion)
 
 First we load the *trappingmotion* library:
 ```{r}
+
+# devtools::install_github("PabloPalencia/trappingmotion") # run this line once to install the package
 library(trappingmotion)
 ```
 
@@ -43,23 +42,23 @@ head(RedDeerdata)
 
 Using the `identbhvs` function it is possible to identify different movement behaviours (e.g. animals that were foraging VS animals that were moving between habitat patches).
 
-```{r}
-#identbhvs(RedDeerdata$Speed)
+```{r, warning=FALSE, message=FALSE, fig.keep='last', fig.width=6, fig.height=6}
+identbhvs(RedDeerdata$Speed)
 ```
 
-3 different movement behaviours have been identified in this population.
+Three different movement behaviours have been identified in this population.
 
 ## 2.2 Estimating mean movement speed
 A sampling bias to fast movements have been described in camera-trapping studies. Considering that, mean speed of each behaviour cannot be estimated by aritmethic mean. To solve this bias we use the function `meanspeed`.
 
 ```{r}
-#meanspeed(behav_class)
+meanspeed(behav_class) # colums= behaviours, rows= c(mean, SE)
 ```
 
-## 2.3 Estimating day range
+## 2.3 Estimating activity
 To estimate day range (i.e. average daily distance travelled by the animals) it is need to get values about activity and speed of the animals. In the first part of this vignette, we have described the procedure to estimate speed. Now, we will describe how to estimate activity rate. For that, we will use the `activity` R package.
 
-```{r}
+```{r, fig.width=6, fig.height=6}
 library(activity)
 
 # Estimating radian time of day
@@ -80,54 +79,29 @@ act_se <- mod1@act[2]
 ```
 
 
+## 2.4 Estimating day range
+Lets create a dataframe that includes the speeds results
 
+```{r echo=FALSE}
+speed_data <- data.frame(speeds=res[1,], speed_se=res[2,], n_seq=c(length(which(behav_class$behaviour == "1" )), length(which(behav_class$behaviour == "2" )), length(which(behav_class$behaviour == "3" ))))
 
-
-
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
-
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
-
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+```{r}
+head(speed_data)
+```
+Run the `dayrange` function to estimate day range (i.e. average daily distance travelled of this red deer population)
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+```{r}
+dayrange(act, act_se, speed_data)
 ```
 
-Also a quote using `>`:
+The day range of this population is 5.07km per day
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+#para incluir imagenes externas (el logo)
+#```{r, out.width='25%', fig.align='center', fig.cap='...'}
+#knitr::include_graphics('images/hex-rmarkdown.png')
+#```
+
+
+

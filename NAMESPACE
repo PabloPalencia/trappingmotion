@@ -2,7 +2,9 @@
 
 #export(hello)
 import(NbClust)
-importFrom(mixdist)
-importFrom(ggplot2)
-importFrom(tidyverse)
+import(mixdist)
+import(ggplot2)
+import(tidyverse)
 export(identbhvs)
+export(meanspeed)
+export(dayrange)

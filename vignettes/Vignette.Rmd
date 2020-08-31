@@ -1,7 +1,7 @@
 ---
 title: "trappingmotion Vignette"
 author: "Pablo Palencia"
-date: "28 August 2020"
+date: "31 August 2020"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{trappingmotion Vignette}
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 Animal movement plays a crucial role in ecology as a key parameter in spatial distribution, population abundance, and other related processes such as habitat use and disease transmission, among others. Nowadays, movement ecology studies are based on a wide range of sensors, mainly biologging devices, but also satellites and drones. However, camera-traps (remotely activated cameras, CT) have been scarcelly used for this purpose. Camera-trapping has experienced exponential growth during the last two decades. CT are used for a wide range of applications: species inventory, habitat use, abundance estimation, occupancy or species interaction, among others. In *trappingmotion* R package we devoleped a set of new functions to integrate movement & behavioural ecology in camera-trapping studies.
 
 # 2. Getting started with *trappingmotion* package.
-This vignette will guide you throught the main functions included in the package. Briefly, we will identify movement behaviours (states) in a red deer population sampled with camera-traps, we will estimate the average movement speed of each behaviour, and finally, we will estimate day range. For that, we will analyse the dataset 'RedDeerdata' provided in the package.
+This vignette will guide you throught the main functions included in the package. Briefly, we will identify movement behaviours (states) in a red deer population sampled with camera-traps. We will estimate the average movement speed of each behaviour, and finally, we will estimate day range (i.e. average daily distance travelled by the animals). For that, we will analyse the dataset 'RedDeerdata' provided in the package.
 
 
 First we load the *trappingmotion* library:
@@ -40,13 +40,13 @@ head(RedDeerdata)
 
 ## 2.1 Identifying movement behaviours (states)
 
-Using the `identbhvs` function it is possible to identify different movement behaviours (e.g. animals that were foraging VS animals that were moving between habitat patches).
+Using the `identbhvs` function it is possible to identify different movement behaviours (e.g. animals that were foraging VS animals that were moving between habitat patches) applying a machine learning procedure.
 
 ```{r, warning=FALSE, message=FALSE, fig.keep='last', fig.width=6, fig.height=6}
 identbhvs(RedDeerdata$Speed)
 ```
 
-Three different movement behaviours have been identified in this population.
+In this example, three different movement behaviours have been identified in this population.
 
 ## 2.2 Estimating mean movement speed
 A sampling bias to fast movements have been described in camera-trapping studies. Considering that, mean speed of each behaviour cannot be estimated by aritmethic mean. To solve this bias we use the function `meanspeed`.
@@ -55,8 +55,10 @@ A sampling bias to fast movements have been described in camera-trapping studies
 meanspeed(behav_class) # colums= behaviours, rows= c(mean, SE)
 ```
 
+AS expected, we found high difference in the average speed value of each behaviour
+
 ## 2.3 Estimating activity
-To estimate day range (i.e. average daily distance travelled by the animals) it is need to get values about activity and speed of the animals. In the first part of this vignette, we have described the procedure to estimate speed. Now, we will describe how to estimate activity rate. For that, we will use the `activity` R package.
+To estimate day range it is need to get values about activity and speed of the animals. In the first part of this vignette, we have described the procedure to estimate speed. Now, we will describe how to estimate activity rate. For that, we will use the `activity` R package available in CRAN.
 
 ```{r, fig.width=6, fig.height=6}
 library(activity)
@@ -90,7 +92,7 @@ speed_data <- data.frame(speeds=res[1,], speed_se=res[2,], n_seq=c(length(which(
 ```{r}
 head(speed_data)
 ```
-Run the `dayrange` function to estimate day range (i.e. average daily distance travelled of this red deer population)
+Run the `dayrange` function to estimate day range 
 
 ```{r}
 dayrange(act, act_se, speed_data)
@@ -98,10 +100,8 @@ dayrange(act, act_se, speed_data)
 
 The day range of this population is 5.07km per day
 
+```{r echo=FALSE}
 #para incluir imagenes externas (el logo)
 #```{r, out.width='25%', fig.align='center', fig.cap='...'}
 #knitr::include_graphics('images/hex-rmarkdown.png')
-#```
-
-
-
+```

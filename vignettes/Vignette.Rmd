@@ -26,7 +26,8 @@ This vignette will guide you throught the main functions included in the package
 First we load the *trappingmotion* library:
 ```{r}
 
-# devtools::install_github("PabloPalencia/trappingmotion") # run this line once to install the package
+# devtools::install_github("PabloPalencia/trappingmotion") # run this line once to 
+# install the package
 library(trappingmotion)
 ```
 
@@ -64,7 +65,8 @@ To estimate day range it is need to get values about activity and speed of the a
 library(activity)
 
 # Estimating radian time of day
-RedDeerdata$T_0_1 <- (as.numeric(strptime(RedDeerdata$Time, format="%H:%M:%S") - as.POSIXct(format(Sys.Date())), units="secs")/86400)
+RedDeerdata$T_0_1 <- (as.numeric(strptime(RedDeerdata$Time, format="%H:%M:%S") 
+                                 - as.POSIXct(format(Sys.Date())), units="secs")/86400)
 
 # Estimating activity value
 activityRES <- 2*pi*RedDeerdata$T_0_1

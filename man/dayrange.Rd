@@ -30,7 +30,7 @@ Day range expresed in km/day
 }
 \references{
 Palencia et al 2020 -  in prep
-\Rowcliffe, J. M., Kays, R., Kranstauber, B., Carbone, C., & Jansen, P. A. (2014). Quantifying levels of animal activity using camera trap data. Methods in Ecology and Evolution, 5(11), 1170-1179.
+\nRowcliffe, J. M., Kays, R., Kranstauber, B., Carbone, C., & Jansen, P. A. (2014). Quantifying levels of animal activity using camera trap data. Methods in Ecology and Evolution, 5(11), 1170-1179.
 }
 \author{
 Pablo Palencia

@@ -42,7 +42,7 @@ Pablo Palencia
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-'identbhvs' function
+'identbhvs' and 'meanspeed' functions
 }
 \examples{
 speed_data <-data.frame(speeds=c(0.6, 0.9, 0.01), speeds_se=c(0.1, 0.2, 0.001), n_seq=c(50, 30, 10))

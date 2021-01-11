@@ -4,18 +4,18 @@ identbhvs <- function(dat){
   invisible(capture.output(res_NC <- NbClust(muestra, diss= NULL, distance = "euclidean", min.nc =2, max.nc=5, method = "kmeans")))
   resul <- data.frame(cbind(muestra, res_NC$Best.partition)); names(resul) <- c("speed", "group")
 
-  n_c <- res_NC$Best.nc[1]
+  n_c <- length(unique(res_NC$Best.partition))
   res_m <- aggregate( speed ~ group, resul, mean)
   res_m <- res_m[order(res_m$speed),]
   res_sd <- aggregate( speed ~ group, resul, sd)
   res_sd <- res_sd[order(res_sd$speed),]
   res_n <- aggregate( speed ~ group, resul, length)
   res_m[1,3] <- res_m[2,2]/res_m[1,2]; res_m[2,3] <- res_m[3,2]/res_m[2,2]; res_m[3,3] <- res_m[4,2]/res_m[3,2]; res_m[4,3] <- res_m[5,2]/res_m[4,2];
-  if (max(na.omit(res_m$V3)) < 1.5){
+  if (max(na.omit(res_m$V3)) < 2){
     return(cat("It is not possible to differentiate different behaviours from the data"))
 
   }else{
-    res_m$V3[is.na(res_m$V3)] <- 5; res_m <- na.omit(res_m); res_m <- subset(res_m, V3 > 1.5)
+    res_m$V3[is.na(res_m$V3)] <- 5; res_m <- na.omit(res_m); res_m <- subset(res_m, V3 > 2)
 
     hh <- hist(muestra[,1], breaks= round(((max(muestra[,1])-min(muestra[,1]))*10), 1), plot = FALSE, warn.unused = FALSE) # length interval=0.1
     dd <- as.data.frame(cbind(hh$breaks,hh$counts[+1]))

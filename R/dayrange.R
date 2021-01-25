@@ -14,7 +14,7 @@ dayrange <- function(act, act_se, speed_data){
 
     }
 
-    Dr <- 0; ses<-0
+    Dr <- 0; ses<-c()
     for(i in 1:length(speed_data[,1])){ #Este loop es para calcular el DR en m
 
       dr <- (speed_data[i,1]*act*(speed_data[1,1]/speed_data[i,1])*speed_data[i,3])/n_T

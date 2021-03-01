@@ -37,28 +37,86 @@ identbhvs <- function(dat){
 
 
     jj <- na.omit(jj)
-    k <- c(1:length(jj[,1]))
     for(k in 1:length(jj[,1])){
-      if(max(jj[k,(length(jj[1,])-length(fitpike2$parameters[,1])):(length(jj[1,])-1)]) == jj[k,(length(jj[1,])-length(fitpike2$parameters[,1]))]){
-        jj[k,length(jj[1,])] <- 1
-      }else{
-        if(max(jj[k,(length(jj[1,])-length(fitpike2$parameters[,1])):(length(jj[1,])-1)]) == jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))+1)]){
-          jj[k,length(jj[1,])] <- 2
-        }else{
-          if(max(jj[k,(length(jj[1,])-length(fitpike2$parameters[,1])):(length(jj[1,])-1)]) == jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))+2)]){
-            jj[k,length(jj[1,])] <- 3
-          }else{
-            if(max(jj[k,(length(jj[1,])-length(fitpike2$parameters[,1])):(length(jj[1,])-1)]) == jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))+3)]){
-              jj[k,length(jj[1,])] <- 4
-            }else{
-              if(max(jj[k,(length(jj[1,])-length(fitpike2$parameters[,1])):(length(jj[1,])-1)]) == jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))+4)]){
-                jj[k,length(jj[1,])] <- 4
+      if(length(fitpike2$parameters[,1]) == 2){
+        zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[1]
+        zz <- as.numeric(sub("conditprob.", "", names(zz)))
+        jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
 
-              }
-            }
-          }
+        if(jj[k,length(jj[1,])] == 0){
+
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[2]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- zz
         }
       }
+
+      if(length(fitpike2$parameters[,1]) == 3){
+        zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[1]
+        zz <- as.numeric(sub("conditprob.", "", names(zz)))
+        jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[2]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+        }
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[3]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- zz
+        }
+      }
+
+      if(length(fitpike2$parameters[,1]) == 4){
+        zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[1]
+        zz <- as.numeric(sub("conditprob.", "", names(zz)))
+        jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[2]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+        }
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[3]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+        }
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[4]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- zz
+        }
+      }
+
+      if(length(fitpike2$parameters[,1]) == 5){
+        zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[1]
+        zz <- as.numeric(sub("conditprob.", "", names(zz)))
+        jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[2]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+        }
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[3]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+        }
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[4]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- rbinom(1, 1, (max(jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)])))*zz
+        }
+        if(jj[k,length(jj[1,])] == 0){
+          zz <- sort((jj[k,((length(jj[1,])-length(fitpike2$parameters[,1]))):(length(jj[1,])-1)]), decreasing = T)[5]
+          zz <- as.numeric(sub("conditprob.", "", names(zz)))
+          jj[k,length(jj[1,])] <- zz
+        }
+      }
+
     }
 
 

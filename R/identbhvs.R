@@ -2,16 +2,19 @@ identbhvs <- function(dat){
   muestra <-data.frame(dat*100); muestra <- subset(muestra, muestra >0); names(muestra) <- ("speed")
 
   invisible(capture.output(res_NC <- NbClust(muestra, diss= NULL, distance = "euclidean", min.nc =2, max.nc=5, method = "kmeans")))
-  resul <- data.frame(cbind(muestra, res_NC$Best.partition)); names(resul) <- c("speed", "group")
+  resul <- data.frame(cbind(muestra, res_NC$Best.partition)); names(resul) <- c("speed", "KGroup")
 
   n_c <- length(unique(res_NC$Best.partition))
-  res_m <- aggregate( speed ~ group, resul, mean)
+  res_m <- aggregate(speed ~ KGroup, resul, "mean")
   res_m <- res_m[order(res_m$speed),]
-  res_sd <- aggregate( speed ~ group, resul, sd)
+  res_sd <- aggregate( speed ~ KGroup, resul, sd)
   res_sd <- res_sd[order(res_sd$speed),]
-  res_n <- aggregate( speed ~ group, resul, length)
+  res_n <- aggregate( speed ~ KGroup, resul, length)
   res_m[1,3] <- res_m[2,2]/res_m[1,2]; res_m[2,3] <- res_m[3,2]/res_m[2,2]; res_m[3,3] <- res_m[4,2]/res_m[3,2]; res_m[4,3] <- res_m[5,2]/res_m[4,2];
   if (max(na.omit(res_m$V3)) < 2){
+    behav_class1 <- data.frame(dat); names(behav_class1) <- ("speed")
+    behav_class1$behaviour <- 1
+    behav_class <<- behav_class1
     return(cat("It is not possible to differentiate different behaviours from the data"))
 
   }else{

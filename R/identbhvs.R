@@ -11,7 +11,9 @@ identbhvs <- function(dat){
   res_sd <- res_sd[order(res_sd$speed),]
   res_n <- aggregate( speed ~ KGroup, resul, length)
   res_m[1,3] <- res_m[2,2]/res_m[1,2]; res_m[2,3] <- res_m[3,2]/res_m[2,2]; res_m[3,3] <- res_m[4,2]/res_m[3,2]; res_m[4,3] <- res_m[5,2]/res_m[4,2];
-  if (max(na.omit(res_m$V3)) < 2){
+  res_m[1,4] <- res_n[1,2]; res_m[2,4] <- res_n[2,2]; res_m[3,4] <- res_n[3,2]; res_m[4,4] <- res_n[4,2]; res_m[5,4] <- res_n[5,2]
+  res_m <- subset(res_m, V4 > 10)
+  if (max(na.omit(res_m$V3)) < 2 | length(res_m[,1]) <= 1){
     behav_class1 <- data.frame(dat); names(behav_class1) <- ("speed")
     behav_class1$behaviour <- 1
     behav_class <<- behav_class1

@@ -23,7 +23,7 @@ A numeric vector of speed data in m/s
 A data frame in which the first column includes the speeds, and the second column includes the movement behaviour in which each speed has been classified. A density plot with the speed clustering is obtained by default.
 }
 \references{
-Palencia et al. 2020 - in prep
+Palencia, P., Fernandez-Lopez, J., Vicente, J., & Acevedo, P. (2021). Innovations in movement and behavioural ecology from camera traps: day range as model parameter. Methods in Ecology and Evolution, doi:10.1111/2041-210X.13609
 }
 \author{
 Pablo Palencia

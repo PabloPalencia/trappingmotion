@@ -19,7 +19,7 @@ Number of activity rate of the population. Takes values between 0 and 1. See 'fi
 Number of activity rate standard error.
 }
   \item{speed_data}{
-A data frame containing 3 columns and i rows. Each row includes parameters for each movement behaviour (state) identified. First column: average movement speed expresed in m/s; second column: standard error of average movement speed; third column: number of animals classified on each behaviour.
+A data frame containing 3 columns and i rows (the output of 'meanspeed' function). Each row includes parameters for each movement behaviour (state) identified. First column: average movement speed expresed in m/s; second column: standard error of average movement speed; third column: number of animals classified on each behaviour.
 }
 }
 \details{
@@ -29,7 +29,7 @@ A data frame containing 3 columns and i rows. Each row includes parameters for e
 Day range expresed in km/day
 }
 \references{
-Palencia et al 2020 -  in prep
+Palencia, P., Fernandez-Lopez, J., Vicente, J., & Acevedo, P. (2021). Innovations in movement and behavioural ecology from camera traps: day range as model parameter. Methods in Ecology and Evolution, doi:10.1111/2041-210X.13609
 \nRowcliffe, J. M., Kays, R., Kranstauber, B., Carbone, C., & Jansen, P. A. (2014). Quantifying levels of animal activity using camera trap data. Methods in Ecology and Evolution, 5(11), 1170-1179.
 }
 \author{

@@ -5,7 +5,7 @@
 Estimate size-biased mean movement speed of a population sampled with camera-traps
 }
 \description{
-When working with camera-trpas, the probability of sampling a given speed is proportional to itself. To estimate the average movement speed, a specific function should be applied to correct this size-biased sample. Different functions have been described (e.g. log-norma, gamma or Weibull), in this case we applied a Harmonic mean to estimate mean movement speed
+When working with camera-trpas, the probability of sampling a given speed is proportional to itself. To estimate the average movement speed, a specific function should be applied to correct this size-biased sample. Different functions have been described (e.g. log-normal, gamma or Weibull), in this case we applied a Harmonic mean to estimate mean movement speed
 }
 \usage{
 meanspeed(x)
@@ -23,7 +23,7 @@ The output of 'identbehv' function (i.e. a data frame containing in the first co
 Mean and standard error of each movement state.
 }
 \references{
-Palencia et al 2020 - in prep.
+Palencia, P., Fernandez-Lopez, J., Vicente, J., & Acevedo, P. (2021). Innovations in movement and behavioural ecology from camera traps: day range as model parameter. Methods in Ecology and Evolution, doi:10.1111/2041-210X.13609
 Rowcliffe, J. M., Jansen, P. A., Kays, R., Kranstauber, B., & Carbone, C. (2016). Wildlife speed cameras: measuring animal travel speed and day range using camera traps. Remote Sensing in Ecology and Conservation, 2(2), 84-94.
 }
 \author{

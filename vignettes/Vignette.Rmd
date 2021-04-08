@@ -3,6 +3,7 @@ title: "trappingmotion Vignette"
 author: "Pablo Palencia"
 date: "06 April 2021"
 output: rmarkdown::html_vignette
+# output: pdf_document
 vignette: >
   %\VignetteIndexEntry{trappingmotion Vignette}
   %\VignetteEngine{knitr::rmarkdown}

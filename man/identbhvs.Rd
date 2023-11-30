@@ -5,7 +5,7 @@
 Identify movement behaviours(states) in a population sampled with camera-traps.
 }
 \description{
-Identify the optimal number of movement behaviours(states) by a k-means clustering.
+Identify the optimal number of movement behaviours(states) by a k-means clustering. On trappingmotion version 2.0.0 I included a simplified version of 'identbhvs' released on version 1.0.0. Please, use 'identbhvs_mixdist' if you want to combine k-means clustering with log-normal mixture distributions when identifying movement behaviours.
 }
 \usage{
 identbhvs(dat)

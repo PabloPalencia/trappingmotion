@@ -27,8 +27,8 @@ This vignette will guide you throught the main functions included in the package
 First we load the *trappingmotion* library:
 ```{r}
 
-# devtools::install_github("PabloPalencia/trappingmotion") # run this line once to 
-# install the package
+devtools::install_github("PabloPalencia/trappingmotion") # run this line once for 
+# installing/updating the package. Version 2.0.0 is available! 
 library(trappingmotion)
 ```
 

@@ -5,7 +5,7 @@
 Identify movement behaviours(states) in a population sampled with camera-traps.
 }
 \description{
-Identify movement behaviours(states) by a clustering and mixture distribution process. A k-means clustering scheme has been applied to estimate the optimal number of movement behaviours, and log-normal distributions have been considered to classify the speed values.
+Identify the optimal number of movement behaviours(states) by a k-means clustering.
 }
 \usage{
 identbhvs(dat)
@@ -35,7 +35,7 @@ Pablo Palencia
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-'meanspeed' function
+'meanspeed' function, 'identbhvs_mixdist' function
 }
 \examples{
 dat2<-c(rnorm(80, 2, 0.8), rnorm(80, 0.2, 0.1), rnorm(30, 1, 0.1))

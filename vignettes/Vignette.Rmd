@@ -27,7 +27,7 @@ This vignette will guide you throught the main functions included in the package
 First we load the *trappingmotion* library:
 ```{r}
 
-devtools::install_github("PabloPalencia/trappingmotion") # run this line once for 
+# devtools::install_github("PabloPalencia/trappingmotion") # run this line once for 
 # installing/updating the package. Version 2.0.0 is available! 
 library(trappingmotion)
 ```
@@ -44,7 +44,7 @@ head(RedDeerdata)
 
 Using the `identbhvs` function it is possible to identify different movement behaviours (e.g. animals that were foraging VS animals that were moving between habitat patches) applying a k-means clustering. The optimal number of behaviours (clusters) is determined by comparing a set of 30 indices.
 
-Before identifying movement behaviours, it is important to explore the *presence of outliers in the speed data*. Habitual procedures to identify outliers, such as visualization (boxplot), interquartile range and/or statistical tests (z scores) can be applied. `identify_outliers` function from `rstatix` R package could be also useful. If outliers are detected, review the speed estimation procedure in those pictures, and/or consider to discard those speeds before indentifying behaviours. 
+Before identifying movement behaviours, it is important to explore the **presence of outliers in the speed data**. Habitual procedures to identify outliers, such as visualization (boxplot), interquartile range and/or statistical tests (z scores) can be applied. `identify_outliers` function from `rstatix` R package could be also useful. If outliers are detected, review the speed estimation procedure in those pictures, and/or consider to discard those speeds before indentifying behaviours. 
 
 A more complex behaviour identification procedure including log-normal mixture models to assign the speeds to a group can be applied using `identbhvs_mixdist` function.
 
@@ -61,7 +61,7 @@ A sampling bias to fast movements have been described in camera trapping studies
 meanspeed(behav_class) # colums= behaviours, rows= c(mean, SE)
 ```
 
-As expected, we found high difference in the average speed value of each behaviour:
+From the total of 183 speed estimates in our data, 103 observations were classified in the slowest behaviour (0.07 m/s), 54 in a group with an average speed of 0.70 m/s; and the other 26 observations in the fastest group (average speed 1.27 m/s). As expected, we found high difference in the average speed value of each behaviour:
 ```{r}
 head(speed_data)
 ```

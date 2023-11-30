@@ -5,7 +5,8 @@
 Identify movement behaviours(states) in a population sampled with camera-traps.
 }
 \description{
-Identify movement behaviours(states) by a clustering and mixture distribution process. A k-means clustering scheme has been applied to estimate the optimal number of movement behaviours, and log-normal distributions have been considered to classify the speed values. This function apply the procedure described in Palencia et al. 2021 - Innovations in movement and behavioural ecology from camera traps: day range as model parameter. Methods in Ecology and Evolution
+Identify movement behaviours(states) by a clustering and mixture distribution process. A k-means clustering scheme has been applied to estimate the optimal number of movement behaviours, and log-normal distributions have been considered to classify the speed values. This function apply the procedure described in Palencia et al. 2021 - Innovations in movement and behavioural ecology from camera traps: day range as model parameter. Methods in Ecology and Evolution.
+Please, explore the presence of outliers in your data before running this function. You can use habitual procedures to identify outliers, such as visualization (boxplot), interquartile range and/or statistical tests (z scores). 'identify_outliers' function from 'rstatix' R package could be also useful.
 }
 \usage{
 identbhvs_mixdist(dat)

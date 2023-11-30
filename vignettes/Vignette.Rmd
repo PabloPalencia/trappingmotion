@@ -1,7 +1,7 @@
 ---
 title: "trappingmotion Vignette"
 author: "Pablo Palencia"
-date: "06 April 2021"
+date: "30 November 2023"
 output: rmarkdown::html_vignette
 # output: pdf_document
 vignette: >
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 # 1. Introduction
-Animal movement plays a crucial role in ecology as a key parameter in spatial distribution, population abundance, and other related processes such as habitat use and disease transmission, among others. Nowadays, movement ecology studies are based on a wide range of sensors, mainly biologging devices, but also satellites and drones. However, camera traps (remotely activated cameras, CT) have been scarcelly used for this purpose. Camera trapping has experienced exponential growth during the last two decades. CT are used for a wide range of applications: species inventory, habitat use, abundance estimation, occupancy or species interaction, among others. In *trappingmotion* R package we devoleped a set of new functions to integrate movement & behavioural ecology in camera trapping studies. Please, see further details in the paper "Innovations in movement and behavioural ecology from camera traps: day range as model parameter"(https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.13609)
+Animal movement plays a crucial role in ecology as a key parameter in spatial distribution, population abundance, and other related processes such as habitat use and disease transmission, among others. Nowadays, movement ecology studies are based on a wide range of sensors, mainly biologging devices, but also satellites and drones. However, camera traps (remotely activated cameras, CT) have been scarcely used for this purpose. Camera trapping has experienced exponential growth during the last two decades. CT are used for a wide range of applications: species inventory, habitat use, abundance estimation, occupancy or species interaction, among others. In *trappingmotion* R package I developed a set of new functions to integrate movement & behavioural ecology in camera trapping studies. Please, see further details in the paper "Innovations in movement and behavioural ecology from camera traps: day range as model parameter"(https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.13609)
 
 # 2. Getting started with *trappingmotion* package.
 This vignette will guide you throught the main functions included in the package. Briefly, we will identify movement behaviours (states) in a red deer population sampled with camera traps. We will estimate the average movement speed of each behaviour, and finally, we will estimate day range (i.e. average daily distance travelled by the animals). For that, we will analyse the dataset 'RedDeerdata' provided in the package.
@@ -42,16 +42,20 @@ head(RedDeerdata)
 
 ## 2.1 Identifying movement behaviours (states)
 
-Using the `identbhvs` function it is possible to identify different movement behaviours (e.g. animals that were foraging VS animals that were moving between habitat patches) applying a machine learning procedure.
+Using the `identbhvs` function it is possible to identify different movement behaviours (e.g. animals that were foraging VS animals that were moving between habitat patches) applying a k-means clustering. The optimal number of behaviours (clusters) is determined by comparing a set of 30 indices.
+
+Before identifying movement behaviours, it is important to explore the *presence of outliers in the speed data*. Habitual procedures to identify outliers, such as visualization (boxplot), interquartile range and/or statistical tests (z scores) can be applied. `identify_outliers` function from `rstatix` R package could be also useful. If outliers are detected, review the speed estimation procedure in those pictures, and/or consider to discard those speeds before indentifying behaviours. 
+
+A more complex behaviour identification procedure including log-normal mixture models to assign the speeds to a group can be applied using `identbhvs_mixdist` function.
 
 ```{r, warning=FALSE, message=FALSE, fig.keep='last', fig.width=6, fig.height=6}
 identbhvs(RedDeerdata$Speed)
 ```
 
-In this example, two different movement behaviours have been identified in this population.
+In this example, three different movement behaviours have been identified in this population.
 
 ## 2.2 Estimating mean movement speed
-A sampling bias to fast movements have been described in camera trapping studies. Considering that, mean speed of each behaviour cannot be estimated by aritmethic mean. To solve this bias we use the function `meanspeed`.
+A sampling bias to fast movements have been described in camera trapping studies (Rowcliffe et al., 2016). Considering that, the mean speed of each behaviour cannot be estimated by arithmetic mean. To solve this bias we use the function `meanspeed`.
 
 ```{r}
 meanspeed(behav_class) # colums= behaviours, rows= c(mean, SE)

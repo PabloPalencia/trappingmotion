@@ -8,7 +8,7 @@ Description: Provides fucntions to identify movement patterns in wildlife from p
 License: MIT 
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: NbClust, mixdist, ggplot2, tidyverse, dplyr
 VignetteBuilder: knitr
 Suggests: knitr, rmarkdown
